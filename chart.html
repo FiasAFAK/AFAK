@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="رسوم بيانية مباشرة - معادن، فوركس، مؤشرات، أسهم | آفاق للوساطة المالية">
+<title>الرسوم البيانية | آفاق للوساطة المالية</title>
+<script>(function(){var t=null;try{t=localStorage.getItem("afak-theme")}catch(e){}if(t!=="dark"&&t!=="light")t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.setAttribute("data-theme",t)})();</script>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&family=Reem+Kufi:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#faf7ef;--surface:#fff;--text:#1b1710;--muted:#6b6454;--gold:#a67c1a;--line:#e6dec7;--head:#fff;--chipon:#f6ecd0;--chart:#fff;--ok:#1d7a46;--okbg:#e3f4ea;--no:#b3261e;--nobg:#fbe7e5;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root[data-theme="dark"]{--bg:#12100b;--surface:#1c1810;--text:#f1ead6;--muted:#a79d83;--gold:#d9b455;--line:#3a3220;--head:#17140d;--chipon:#2a2210;--chart:#131722;--ok:#4ade80;--okbg:#1a2e1a;--no:#f87171;--nobg:#2b1a1a;color-scheme:dark}
+*,*::before,*::after{box-sizing:inherit;margin:0;padding:0}
+html,body{height:100%}
+body{background:var(--bg);color:var(--text);font-family:Cairo,Tahoma,sans-serif;line-height:1.6;display:flex;flex-direction:column;min-height:100vh}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1200px;margin:0 auto;padding:0 14px;width:100%}
+header{background:var(--head);border-bottom:1px solid var(--line);position:sticky;top:env(safe-area-inset-top,0px);z-index:30}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:58px}
+.brand{display:flex;align-items:center;gap:8px;font-family:"Reem Kufi",Cairo,sans-serif;font-size:15px;font-weight:600}
+.brand img{width:36px;height:36px;border-radius:50%;object-fit:cover}
+.back-btn{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:999px;border:1px solid var(--gold);color:var(--gold);font-size:13px}
+.cats,.symbols{display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;align-items:center}
+.cats{padding:12px 0 8px}.symbols{padding:4px 0 12px}
+.cats::-webkit-scrollbar,.symbols::-webkit-scrollbar{display:none}
+.cats button{flex:none;padding:8px 18px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--muted);font:inherit;font-size:14px;font-weight:600;cursor:pointer;transition:.2s}
+.cats button.active{background:linear-gradient(135deg,#f1d47a,#b98a22);color:#1a1405;border-color:transparent}
+.symbols button{flex:none;display:inline-flex;align-items:center;gap:7px;padding:6px 14px 6px 12px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--text);font:inherit;font-size:13px;cursor:pointer;white-space:nowrap}
+.symbols button.active{border-color:var(--gold);background:var(--chipon);color:var(--gold);font-weight:700}
+.sep{flex:none;width:1px;height:24px;background:var(--line)}
+.ic{display:inline-flex;align-items:center;justify-content:center;width:28px;height:26px;font-size:16px;line-height:1}
+.bd{width:24px;height:24px;border-radius:50%;color:#fff;font-weight:800;font-size:13px;font-family:Arial,sans-serif}
+.bq{width:auto;min-width:30px;height:22px;padding:0 5px;border-radius:7px;color:#fff;font-weight:800;font-size:11px;font-family:Arial,sans-serif}
+.chart-header{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.chart-header h1{font-size:clamp(18px,4vw,24px);font-weight:800;color:var(--gold)}
+.live-badge{display:inline-flex;align-items:center;gap:6px;background:var(--okbg);color:var(--ok);font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px}
+.live-badge::before{content:"";width:7px;height:7px;background:var(--ok);border-radius:50%;animation:pulse 1.4s infinite}
+.live-badge.closed{background:var(--nobg);color:var(--no)}
+.live-badge.closed::before{background:var(--no);animation:none}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.chart-box{flex:1;min-height:480px;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--chart);position:relative}
+#tv_chart{width:100%;height:100%;min-height:480px}
+.note{text-align:center;color:var(--muted);font-size:12px;margin-top:12px;padding-bottom:16px}
+footer{background:var(--bg);border-top:1px solid var(--line);padding:14px 0;text-align:center;color:var(--muted);font-size:12px}
+@media(max-width:600px){.chart-box,#tv_chart{min-height:400px}.brand{font-size:13px}}
+@media(prefers-reduced-motion:reduce){.live-badge::before{animation:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="brand" href="./"><img src="icon-192.png" alt="آفاق"><span>آفاق الوساطة المالية</span></a>
+  <a class="back-btn" href="./">← الرئيسية</a>
+</div></header>
+<main class="wrap" style="flex:1;display:flex;flex-direction:column;padding-top:4px;padding-bottom:8px">
+  <div class="cats" id="cats">
+    <button data-cat="metals" class="active">معادن</button>
+    <button data-cat="forex">فوركس</button>
+    <button data-cat="indices">مؤشرات</button>
+    <button data-cat="stocks">أسهم</button>
+    <button data-cat="other">طاقة وعملات رقمية</button>
+  </div>
+  <div class="symbols" id="symbols"></div>
+  <div class="chart-header"><h1 id="chartTitle">الذهب</h1><span class="live-badge" id="liveBadge">مباشر</span></div>
+  <div class="chart-box"><div id="tv_chart"></div></div>
+  <p class="note">البيانات عبر TradingView · الأسعار قد تختلف قليلاً حسب الوسيط</p>
+</main>
+<footer><div class="wrap">© 2026 آفاق للوساطة المالية</div></footer>
+<script src="https://s3.tradingview.com/tv.js"></script>
+<script>
+(function(){
+function bars(n,c1,c2,top,edge){
+  var g='g'+n,d='<defs><linearGradient id="'+g+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+c1+'"/><stop offset="1" stop-color="'+c2+'"/></linearGradient></defs>';
+  function b(x,y,w,h){return '<path d="M'+(x+2)+' '+y+'H'+(x+w-2)+'L'+(x+w)+' '+(y+h)+'H'+x+'Z" fill="url(#'+g+')" stroke="'+edge+'" stroke-width=".7" stroke-linejoin="round"/><path d="M'+(x+2.4)+' '+(y+.9)+'H'+(x+w-2.4)+'" stroke="'+top+'" stroke-width="1.4" stroke-linecap="round"/>'}
+  return '<svg width="30" height="26" viewBox="0 0 30 26" aria-hidden="true">'+d+b(1,15,13,9)+b(16,15,13,9)+b(8.5,6,13,9)+'</svg>';
+}
+function badge(t,c){return '<span class="ic bd" style="background:'+c+'">'+t+'</span>'}
+function tag(t,c){return '<span class="ic bq" style="background:'+c+'">'+t+'</span>'}
+var DATA={
+ metals:[
+  {id:'OANDA:XAUUSD',name:'الذهب',label:'XAUUSD',ico:bars(1,'#fbe48f','#cf9619','#fff4c2','#8f5f08')},
+  {id:'OANDA:XAGUSD',name:'الفضة',label:'XAGUSD',ico:bars(2,'#f7f9fb','#9aa3ae','#ffffff','#667180')}
+ ],
+ forex:[
+  {id:'FX:EURUSD',name:'يورو / دولار',label:'EURUSD',ico:'🇪🇺🇺🇸'},
+  {id:'FX:GBPUSD',name:'جنيه / دولار',label:'GBPUSD',ico:'🇬🇧🇺🇸'},
+  {id:'FX:USDJPY',name:'دولار / ين',label:'USDJPY',ico:'🇺🇸🇯🇵'},
+  {id:'FX:USDCHF',name:'دولار / فرنك',label:'USDCHF',ico:'🇺🇸🇨🇭'},
+  {id:'FX:AUDUSD',name:'أسترالي / دولار',label:'AUDUSD',ico:'🇦🇺🇺🇸'},
+  {id:'FX:USDCAD',name:'دولار / كندي',label:'USDCAD',ico:'🇺🇸🇨🇦'},
+  {id:'FX:NZDUSD',name:'نيوزلندي / دولار',label:'NZDUSD',ico:'🇳🇿🇺🇸'},
+  {id:'FX:EURGBP',name:'يورو / جنيه',label:'EURGBP',ico:'🇪🇺🇬🇧'}
+ ],
+ indices:[
+  {id:'FOREXCOM:SPXUSD',name:'S&P 500',label:'SPX',ico:tag('500','#1e5fd8')},
+  {id:'FOREXCOM:NSXUSD',name:'ناسداك 100',label:'NAS100',ico:tag('100','#7b3fe4')},
+  {id:'FOREXCOM:DJI',name:'داو جونز',label:'US30',ico:tag('30','#0f8b8d')},
+  {id:'TVC:DAX',name:'داكس الألماني',label:'DAX',ico:'🇩🇪',ses:'dax'},
+  {id:'TVC:UKX',name:'فوتسي 100',label:'FTSE',ico:'🇬🇧',ses:'ftse'},
+  {id:'TVC:NI225',name:'نيكاي 225',label:'NI225',ico:'🇯🇵',ses:'n225'},
+  {id:'TVC:DXY',name:'مؤشر الدولار',label:'DXY',ico:badge('$','#2e7d32'),kind:'forex'}
+ ],
+ stocks:[
+  {id:'NASDAQ:TSLA',name:'تسلا',label:'TSLA',ico:badge('T','#e31937'),ses:'us'},
+  {id:'NASDAQ:AAPL',name:'أبل',label:'AAPL',ico:badge('A','#4b4f56'),ses:'us'},
+  {id:'NASDAQ:GOOGL',name:'جوجل',label:'GOOGL',ico:badge('G','#4285f4'),ses:'us'},
+  {id:'NASDAQ:MSFT',name:'مايكروسوفت',label:'MSFT',ico:badge('M','#00a4ef'),ses:'us'},
+  {id:'NASDAQ:NVDA',name:'إنفيديا',label:'NVDA',ico:badge('N','#76b900'),ses:'us'},
+  {id:'NASDAQ:AMZN',name:'أمازون',label:'AMZN',ico:badge('a','#ff9900'),ses:'us'},
+  {id:'NASDAQ:META',name:'ميتا',label:'META',ico:badge('\u221e','#0866ff'),ses:'us'}
+ ],
+ other:[
+  {id:'TVC:UKOIL',name:'النفط الخام',label:'USOIL',ico:'🛢️',kind:'metal'},
+  {id:'BITSTAMP:BTCUSD',name:'بيتكوين',label:'BTCUSD',ico:badge('\u20bf','#f7931a'),kind:'crypto'}
+ ]
+};
+var currentCat='metals',currentSymbol=DATA.metals[0],currentInterval='15',widget=null,loadToken=0;
+var catsEl=document.getElementById('cats'),symbolsEl=document.getElementById('symbols'),titleEl=document.getElementById('chartTitle');
+var dark=document.documentElement.getAttribute('data-theme')==='dark';
+function getQuerySymbol(){
+  var s=new URLSearchParams(location.search).get('symbol');if(!s)return null;
+  for(var cat in DATA)for(var i=0;i<DATA[cat].length;i++){var x=DATA[cat][i];if(!x.sep&&(x.label===s||x.id===s))return{cat:cat,item:x}}
+  return null;
+}
+function renderSymbols(){
+  symbolsEl.innerHTML='';
+  DATA[currentCat].forEach(function(item){
+    if(item.sep){var s=document.createElement('span');s.className='sep';symbolsEl.appendChild(s);return}
+    var btn=document.createElement('button');
+    btn.innerHTML=(item.ico.charAt(0)==='<'?item.ico:'<span class="ic">'+item.ico+'</span>')+item.label;
+    if(item.id===currentSymbol.id)btn.className='active';
+    btn.onclick=function(){
+      if(item.id===currentSymbol.id)return;
+      currentSymbol=item;renderSymbols();loadChart();history.replaceState(null,'','?symbol='+item.label);
+    };
+    symbolsEl.appendChild(btn);
+  });
+  var on=symbolsEl.querySelector('.active');if(on&&on.scrollIntoView)on.scrollIntoView({inline:'center',block:'nearest'});
+}
+function cssv(n){return getComputedStyle(document.documentElement).getPropertyValue(n).trim()}
+function loadChart(){
+  var myToken=++loadToken;titleEl.textContent=currentSymbol.name;updateBadge();
+  var c=document.getElementById('tv_chart');c.innerHTML='';
+  setTimeout(function(){
+    if(myToken!==loadToken)return;c.innerHTML='';
+    widget=new TradingView.widget({
+      width:'100%',height:'100%',symbol:currentSymbol.id,interval:currentInterval,timezone:'Asia/Riyadh',
+      theme:dark?'dark':'light',style:'1',locale:'ar',toolbar_bg:cssv('--chart')||(dark?'#131722':'#ffffff'),
+      enable_publishing:false,hide_top_toolbar:false,hide_legend:false,save_image:false,container_id:'tv_chart',
+      studies:[],allow_symbol_change:false,details:true,hotlist:false,calendar:false,
+      disabled_features:['create_volume_indicator_by_default','volume_force_overlay','create_volume_indicator_by_default_once'],
+      enabled_features:['side_toolbar_in_fullscreen_mode','header_in_fullscreen_mode'],
+      drawings_access:{type:'white',tools:[{name:'horizontal_line'},{name:'trend_line'},{name:'rectangle'},{name:'arrow'},{name:'long_position'},{name:'short_position'}]},
+      overrides:{'volumePaneSize':'tiny','mainSeriesProperties.showCountdown':true,'scalesProperties.showSeriesLastValue':true}
+    });
+  },80);
+}
+var HOL=['2026-12-25','2027-01-01'];
+var HOLX={us:['2026-11-26','2027-01-18','2027-02-15'],dax:['2026-12-24','2026-12-31'],ftse:['2026-12-28'],n225:['2026-12-31','2027-01-02','2027-01-11']};
+var SES={us:{tz:'America/New_York',r:[[570,960]]},dax:{tz:'Europe/Berlin',r:[[540,1050]]},ftse:{tz:'Europe/London',r:[[480,990]]},n225:{tz:'Asia/Tokyo',r:[[540,690],[750,930]]}};
+var FM={};
+function parts(tz,d){
+  var f=FM[tz]||(FM[tz]=new Intl.DateTimeFormat('en-US',{timeZone:tz,weekday:'short',hour:'2-digit',minute:'2-digit',hour12:false,year:'numeric',month:'2-digit',day:'2-digit'})),o={};
+  f.formatToParts(d).forEach(function(p){o[p.type]=p.value});
+  return{dow:{Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6}[o.weekday],min:(+o.hour%24)*60+(+o.minute),date:o.year+'-'+o.month+'-'+o.day};
+}
+function kindOf(item){return item.kind||(item.ses?'session':{metals:'metal',forex:'forex',indices:'index'}[currentCat])}
+function isOpen(item,d){
+  d=d||new Date();var kind=kindOf(item);
+  if(kind==='crypto')return true;
+  if(kind==='session'){
+    var c=SES[item.ses],t=parts(c.tz,d);
+    if(t.dow<1||t.dow>5||HOL.indexOf(t.date)>-1||(HOLX[item.ses]||[]).indexOf(t.date)>-1)return false;
+    return c.r.some(function(r){return t.min>=r[0]&&t.min<r[1]});
+  }
+  var n=parts('America/New_York',d);
+  if(HOL.indexOf(n.date)>-1)return false;
+  if(n.dow===6)return false;
+  if(n.dow===5&&n.min>=1020)return false;
+  if(n.dow===0&&n.min<(kind==='forex'?1020:1080))return false;
+  if(kind!=='forex'&&n.min>=1020&&n.min<1080)return false;
+  return true;
+}
+function updateBadge(){var open=isOpen(currentSymbol),b=document.getElementById('liveBadge');b.textContent=open?'مباشر':'مغلق';b.classList.toggle('closed',!open)}
+catsEl.querySelectorAll('button').forEach(function(btn){
+  btn.onclick=function(){
+    catsEl.querySelectorAll('button').forEach(function(b){b.classList.remove('active')});
+    btn.classList.add('active');currentCat=btn.getAttribute('data-cat');currentSymbol=DATA[currentCat][0];
+    renderSymbols();loadChart();history.replaceState(null,'','?symbol='+currentSymbol.label);
+  };
+});
+var fromUrl=getQuerySymbol();
+if(fromUrl){currentCat=fromUrl.cat;currentSymbol=fromUrl.item;catsEl.querySelectorAll('button').forEach(function(b){b.classList.toggle('active',b.getAttribute('data-cat')===currentCat)})}
+renderSymbols();loadChart();setInterval(updateBadge,30000);
+})();
+</script>
+</body>
+</html>
